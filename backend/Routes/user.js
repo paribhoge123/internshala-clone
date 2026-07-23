@@ -6,8 +6,7 @@ const sendMail = require("../utils/mailer");
 
 // Generates a random password using only uppercase and lowercase letters
 function generateRandomPassword(length = 10) {
-  const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   let password = "";
   for (let i = 0; i < length; i++) {
     password += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -20,13 +19,17 @@ router.post("/signup", async (req, res) => {
   const { name, email, phone, password } = req.body;
 
   if (!name || !email || !password) {
-    return res.status(400).json({ error: "Name, email, and password are required" });
+    return res
+      .status(400)
+      .json({ error: "Name, email, and password are required" });
   }
 
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ error: "User with this email already exists" });
+      return res
+        .status(400)
+        .json({ error: "User with this email already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,7 +42,45 @@ router.post("/signup", async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ success: true, message: "User created successfully" });
+    res
+      .status(201)
+      .json({ success: true, message: "User created successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// LOGIN
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ error: "No account found with this email" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Incorrect password" });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      user: {
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+      },
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
@@ -60,7 +101,9 @@ router.post("/forgot-password", async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).json({ error: "No user found with this email or phone" });
+      return res
+        .status(404)
+        .json({ error: "No user found with this email or phone" });
     }
 
     // Check once-per-day rule
@@ -88,7 +131,7 @@ router.post("/forgot-password", async (req, res) => {
     await sendMail(
       user.email,
       "Your Password Has Been Reset",
-      `Hello ${user.name},\n\nYour new password is: ${newPassword}\n\nPlease log in and change it if needed.\n\n- Internshala Clone Team`
+      `Hello ${user.name},\n\nYour new password is: ${newPassword}\n\nPlease log in and change it if needed.\n\n- Internshala Clone Team`,
     );
 
     res.status(200).json({
