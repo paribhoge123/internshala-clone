@@ -116,6 +116,14 @@ const Navbar = () => {
                     {" "}
                     <Link href={"/"}>Register</Link>
                   </button> */}
+
+                  <Link
+                    href="/login"
+                    className="text-gray-600 hover:text-gray-800"
+                  >
+                    Login
+                  </Link>          
+                
                   <a
                     href="/adminlogin"
                     className="text-gray-600 hover:text-gray-800"
