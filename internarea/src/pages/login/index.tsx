@@ -11,6 +11,8 @@ const Login = () => {
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [awaitingOtp, setAwaitingOtp] = useState(false);
+  const [otp, setOtp] = useState("");
   const router = useRouter();
 
   const handleChange = (e: any) => {
@@ -26,12 +28,25 @@ const Login = () => {
     }
     try {
       setIsLoading(true);
-      const res = await axios.post(
+      // Step 1: verify password
+      const loginRes = await axios.post(
         "http://localhost:5000/api/user/login",
         formData
       );
-      toast.success("Logged in successfully!");
-      router.push("/profile");
+
+      // Step 2: check device/browser rules
+      const trackRes = await axios.post(
+        "http://localhost:5000/api/login-tracking/check",
+        { email: formData.email, loginMethod: "password" }
+      );
+
+      if (trackRes.data.requiresOtp) {
+        setAwaitingOtp(true);
+        toast.success("OTP sent to your email");
+      } else {
+        toast.success("Logged in successfully!");
+        router.push("/profile");
+      }
     } catch (error: any) {
       console.log(error);
       toast.error(error?.response?.data?.error || "Invalid credentials");
@@ -39,6 +54,67 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!otp) {
+      toast.error("Please enter the OTP");
+      return;
+    }
+    try {
+      setIsLoading(true);
+      await axios.post("http://localhost:5000/api/login-tracking/verify-otp", {
+        email: formData.email,
+        otp,
+      });
+      toast.success("Logged in successfully!");
+      router.push("/profile");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.error || "Invalid OTP");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (awaitingOtp) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+            Verify OTP
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            We detected a Chrome login. Enter the OTP sent to your email.
+          </p>
+        </div>
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <form className="space-y-6" onSubmit={handleVerifyOtp}>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  OTP
+                </label>
+                <input
+                  type="text"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Enter 6-digit OTP"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+              >
+                {isLoading ? "Verifying..." : "Verify OTP"}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

@@ -1,21 +1,63 @@
 import { selectuser } from "@/Feature/Userslice";
-import { ExternalLink, Mail, User } from "lucide-react";
+import { ExternalLink, Mail, User, Monitor, Smartphone, Clock } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-interface User {
+import axios from "axios";
+
+interface UserType {
   name: string;
   email: string;
   photo: string;
 }
+
+interface LoginRecord {
+  _id: string;
+  browser: string;
+  os: string;
+  deviceType: string;
+  ipAddress: string;
+  loginMethod: string;
+  status: string;
+  createdAt: string;
+}
+
 const index = () => {
-  // const [user, setuser] = useState<User | null>({
-  //   name: "Rahul",
-  //   email: "xyz@gmail.com",
-  //   photo:
-  //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=faces",
-  // });
-  const user=useSelector(selectuser)
+  const user = useSelector(selectuser);
+  const [loginHistory, setLoginHistory] = useState<LoginRecord[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      if (!user?.email) return;
+      try {
+        setLoadingHistory(true);
+        const res = await axios.get(
+          `http://localhost:5000/api/login-tracking/history/${user.email}`
+        );
+        setLoginHistory(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoadingHistory(false);
+      }
+    };
+    fetchHistory();
+  }, [user?.email]);
+
+  const statusLabel = (status: string) => {
+    switch (status) {
+      case "success":
+        return { text: "Success", color: "bg-green-100 text-green-800" };
+      case "blocked_otp_pending":
+        return { text: "OTP Pending", color: "bg-yellow-100 text-yellow-800" };
+      case "blocked_time_window":
+        return { text: "Blocked (Time Window)", color: "bg-red-100 text-red-800" };
+      default:
+        return { text: status, color: "bg-gray-100 text-gray-800" };
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,6 +122,92 @@ const index = () => {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Login History Section */}
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden mt-6">
+          <div className="border-b border-gray-200 px-6 py-4">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center">
+              <Clock className="h-5 w-5 mr-2 text-gray-500" />
+              Login History
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">
+              Recent login attempts on your account
+            </p>
+          </div>
+
+          <div className="p-6">
+            {loadingHistory ? (
+              <p className="text-gray-500 text-sm">Loading login history...</p>
+            ) : loginHistory.length === 0 ? (
+              <p className="text-gray-500 text-sm">No login history found.</p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                        Date
+                      </th>
+                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                        Method
+                      </th>
+                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                        Browser / OS
+                      </th>
+                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                        Device
+                      </th>
+                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                        IP Address
+                      </th>
+                      <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {loginHistory.map((record) => {
+                      const status = statusLabel(record.status);
+                      return (
+                        <tr key={record._id}>
+                          <td className="px-4 py-3 text-sm text-gray-700 whitespace-nowrap">
+                            {new Date(record.createdAt).toLocaleString()}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-700 capitalize">
+                            {record.loginMethod}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-700">
+                            {record.browser} / {record.os}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-700">
+                            <div className="flex items-center">
+                              {record.deviceType === "mobile" ? (
+                                <Smartphone className="h-4 w-4 mr-1 text-gray-400" />
+                              ) : (
+                                <Monitor className="h-4 w-4 mr-1 text-gray-400" />
+                              )}
+                              {record.deviceType || "desktop"}
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-700">
+                            {record.ipAddress}
+                          </td>
+                          <td className="px-4 py-3 text-sm">
+                            <span
+                              className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${status.color}`}
+                            >
+                              {status.text}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { use, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../Assets/logo.png";
 import Link from "next/link";
 import { auth, provider } from "../firebase/firebase";
@@ -7,31 +7,42 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
+import axios from "axios";
+
 interface User {
   name: string;
   email: string;
   photo: string;
 }
+
 const Navbar = () => {
   const user = useSelector(selectuser);
+
   const handlelogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      const loggedInEmail = result.user.email;
+
+      try {
+        await axios.post("http://localhost:5000/api/login-tracking/check", {
+          email: loggedInEmail,
+          loginMethod: "google",
+        });
+      } catch (trackError) {
+        console.error("Login tracking failed:", trackError);
+      }
+
       toast.success("logged in successfully");
     } catch (error) {
       console.error(error);
       toast.error("login failed");
     }
-    // setuser({
-    //   name: "Rahul",
-    //   email: "xyz@gmail.com",
-    //   photo:
-    //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=faces",
-    // });
   };
+
   const handlelogout = () => {
     signOut(auth);
   };
+
   return (
     <div className="relative">
       <nav className="bg-white shadow-md">
@@ -112,24 +123,20 @@ const Navbar = () => {
                     </svg>
                     <span className="text-gray-700">Continue with google</span>
                   </button>
-                  {/* <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                    {" "}
-                    <Link href={"/"}>Register</Link>
-                  </button> */}
 
                   <Link
                     href="/login"
                     className="text-gray-600 hover:text-gray-800"
                   >
                     Login
-                  </Link>          
-                
-                  <a
+                  </Link>
+
+                  <Link
                     href="/adminlogin"
                     className="text-gray-600 hover:text-gray-800"
                   >
                     Admin
-                  </a>
+                  </Link>
                 </>
               )}
             </div>
