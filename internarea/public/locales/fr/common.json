@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "internships": "Stages",
+    "jobs": "Emplois",
+    "plans": "Forfaits",
+    "resume": "CV",
+    "community": "Communauté",
+    "login": "Connexion",
+    "admin": "Administrateur",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "title": "Trouvez le stage de vos rêves",
+    "subtitle": "Explorez des milliers d'opportunités de stages et d'emplois"
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Connectez-vous à votre compte",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "signin": "Se connecter",
+    "forgot": "Mot de passe oublié ?",
+    "noaccount": "Pas de compte ?",
+    "signup": "S'inscrire",
+    "google": "Continuer avec Google"
+  },
+  "signup": {
+    "title": "Créer un compte test",
+    "subtitle": "Inscrivez-vous pour tester la fonctionnalité mot de passe oublié",
+    "name": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone (optionnel)",
+    "password": "Mot de passe",
+    "button": "S'inscrire"
+  },
+  "forgotpassword": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Entrez votre e-mail ou numéro de téléphone enregistré",
+    "label": "E-mail ou numéro de téléphone",
+    "button": "Envoyer un nouveau mot de passe",
+    "back": "Retour à la connexion"
+  },
+  "profile": {
+    "active": "Candidatures actives",
+    "accepted": "Candidatures acceptées",
+    "viewapps": "Voir les candidatures",
+    "loginhistory": "Historique de connexion",
+    "historysubtitle": "Tentatives de connexion récentes",
+    "loading": "Chargement de l'historique...",
+    "nohistory": "Aucun historique trouvé."
+  },
+  "subscription": {
+    "title": "Plans d'abonnement",
+    "subtitle": "Choisissez un plan pour débloquer plus de candidatures",
+    "current": "Plan actuel",
+    "warning": "Les paiements sont acceptés uniquement entre 10h et 11h IST",
+    "getstarted": "Commencer",
+    "subscribe": "S'abonner maintenant",
+    "active": "Actif",
+    "processing": "Traitement..."
+  },
+  "publicspace": {
+    "title": "Espace public",
+    "subtitle": "Partagez des photos et vidéos avec la communauté",
+    "feed": "Fil d'actualité",
+    "friends": "Amis",
+    "addfriend": "Ajouter un ami",
+    "pending": "Demandes en attente",
+    "myfriends": "Mes amis",
+    "nofriends": "Pas encore d'amis. Ajoutez des amis pour débloquer les publications !",
+    "placeholder": "À quoi pensez-vous ?",
+    "post": "Publier",
+    "posting": "Publication...",
+    "share": "Partager",
+    "comments": "Commentaires",
+    "writecomment": "Écrire un commentaire..."
+  },
+  "resume": {
+    "title": "Créateur de CV",
+    "subtitle": "Créez un CV professionnel pour ₹50",
+    "name": "Nom complet",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "objective": "Objectif professionnel",
+    "qualifications": "Éducation et qualifications",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "continue": "Continuer vers la vérification OTP →",
+    "verify": "Vérifiez votre e-mail",
+    "verifyotp": "Vérifier OTP et payer ₹50",
+    "done": "CV généré !",
+    "myresumes": "Mes CV",
+    "download": "Télécharger PDF"
+  },
+  "language": {
+    "select": "Langue",
+    "otp": {
+      "title": "Vérifier l'e-mail pour le français",
+      "subtitle": "Entrez l'OTP envoyé à votre e-mail pour passer au français",
+      "button": "Vérifier et passer au français",
+      "back": "Annuler"
+    }
+  }
+}

@@ -7,8 +7,10 @@ import { Provider, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "@/firebase/firebase";
 import { login, logout } from "@/Feature/Userslice";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../i18n"; // initialize i18n
+
 export default function App({ Component, pageProps }: AppProps) {
   function AuthListener() {
     const dispatch = useDispatch();
@@ -22,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
               name: authuser.displayName,
               email: authuser.email,
               phoneNumber: authuser.phoneNumber,
-            })
+            }),
           );
         } else {
           dispatch(logout());
@@ -36,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <AuthListener />
       <div className="bg-white">
-        <ToastContainer/>
+        <ToastContainer />
         <Navbar />
         <Component {...pageProps} />
         <Footer />

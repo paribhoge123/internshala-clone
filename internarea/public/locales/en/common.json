@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "internships": "Internships",
+    "jobs": "Jobs",
+    "plans": "Plans",
+    "resume": "Resume",
+    "community": "Community",
+    "login": "Login",
+    "admin": "Admin",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "Find Your Dream Internship",
+    "subtitle": "Explore thousands of internship and job opportunities"
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "signin": "Sign in",
+    "forgot": "Forgot your password?",
+    "noaccount": "Don't have an account?",
+    "signup": "Sign up",
+    "google": "Continue with Google"
+  },
+  "signup": {
+    "title": "Create Test Account",
+    "subtitle": "Sign up to test the forgot password feature",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "password": "Password",
+    "button": "Sign up"
+  },
+  "forgotpassword": {
+    "title": "Forgot Password",
+    "subtitle": "Enter your registered email or phone number and we'll send you a new password",
+    "label": "Email or Phone Number",
+    "button": "Send New Password",
+    "back": "Back to login"
+  },
+  "profile": {
+    "active": "Active Applications",
+    "accepted": "Accepted Applications",
+    "viewapps": "View Applications",
+    "loginhistory": "Login History",
+    "historysubtitle": "Recent login attempts on your account",
+    "loading": "Loading login history...",
+    "nohistory": "No login history found."
+  },
+  "subscription": {
+    "title": "Subscription Plans",
+    "subtitle": "Choose a plan to unlock more internship applications",
+    "current": "Current Plan",
+    "warning": "Payments are only accepted between 10:00 AM – 11:00 AM IST",
+    "getstarted": "Get Started",
+    "subscribe": "Subscribe Now",
+    "active": "Active",
+    "processing": "Processing..."
+  },
+  "publicspace": {
+    "title": "Public Space",
+    "subtitle": "Share photos and videos with the community",
+    "feed": "Feed",
+    "friends": "Friends",
+    "addfriend": "Add Friend",
+    "pending": "Pending Requests",
+    "myfriends": "My Friends",
+    "nofriends": "No friends yet. Add friends to unlock posting!",
+    "placeholder": "What's on your mind?",
+    "post": "Post",
+    "posting": "Posting...",
+    "share": "Share",
+    "comments": "Comments",
+    "writecomment": "Write a comment..."
+  },
+  "resume": {
+    "title": "Resume Builder",
+    "subtitle": "Create a professional resume for ₹50 — premium feature",
+    "name": "Full Name",
+    "phone": "Phone",
+    "address": "Address",
+    "objective": "Career Objective",
+    "qualifications": "Education & Qualifications",
+    "experience": "Experience",
+    "skills": "Skills",
+    "continue": "Continue to OTP Verification →",
+    "verify": "Verify Your Email",
+    "verifyotp": "Verify OTP & Pay ₹50",
+    "done": "Resume Generated!",
+    "myresumes": "My Resumes",
+    "download": "Download PDF"
+  },
+  "language": {
+    "select": "Language",
+    "otp": {
+      "title": "Verify Email for French",
+      "subtitle": "Enter the OTP sent to your email to switch to French",
+      "button": "Verify & Switch to French",
+      "back": "Cancel"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "internships": "Estágios",
+    "jobs": "Empregos",
+    "plans": "Planos",
+    "resume": "Currículo",
+    "community": "Comunidade",
+    "login": "Entrar",
+    "admin": "Administrador",
+    "logout": "Sair"
+  },
+  "home": {
+    "title": "Encontre seu estágio dos sonhos",
+    "subtitle": "Explore milhares de oportunidades de estágio e emprego"
+  },
+  "login": {
+    "title": "Entrar",
+    "subtitle": "Entre na sua conta",
+    "email": "E-mail",
+    "password": "Senha",
+    "signin": "Entrar",
+    "forgot": "Esqueceu sua senha?",
+    "noaccount": "Não tem uma conta?",
+    "signup": "Cadastre-se",
+    "google": "Continuar com o Google"
+  },
+  "signup": {
+    "title": "Criar conta de teste",
+    "subtitle": "Cadastre-se para testar o recurso de senha esquecida",
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefone (opcional)",
+    "password": "Senha",
+    "button": "Cadastrar"
+  },
+  "forgotpassword": {
+    "title": "Esqueci minha senha",
+    "subtitle": "Digite seu e-mail ou telefone cadastrado e enviaremos uma nova senha",
+    "label": "E-mail ou número de telefone",
+    "button": "Enviar nova senha",
+    "back": "Voltar ao login"
+  },
+  "profile": {
+    "active": "Candidaturas ativas",
+    "accepted": "Candidaturas aceitas",
+    "viewapps": "Ver candidaturas",
+    "loginhistory": "Histórico de login",
+    "historysubtitle": "Tentativas de login recentes",
+    "loading": "Carregando histórico...",
+    "nohistory": "Nenhum histórico encontrado."
+  },
+  "subscription": {
+    "title": "Planos de assinatura",
+    "subtitle": "Escolha um plano para desbloquear mais candidaturas",
+    "current": "Plano atual",
+    "warning": "Pagamentos aceitos apenas entre 10h e 11h IST",
+    "getstarted": "Começar",
+    "subscribe": "Assinar agora",
+    "active": "Ativo",
+    "processing": "Processando..."
+  },
+  "publicspace": {
+    "title": "Espaço público",
+    "subtitle": "Compartilhe fotos e vídeos com a comunidade",
+    "feed": "Feed",
+    "friends": "Amigos",
+    "addfriend": "Adicionar amigo",
+    "pending": "Pedidos pendentes",
+    "myfriends": "Meus amigos",
+    "nofriends": "Sem amigos ainda. Adicione amigos para desbloquear publicações!",
+    "placeholder": "O que você está pensando?",
+    "post": "Publicar",
+    "posting": "Publicando...",
+    "share": "Compartilhar",
+    "comments": "Comentários",
+    "writecomment": "Escreva um comentário..."
+  },
+  "resume": {
+    "title": "Criador de currículo",
+    "subtitle": "Crie um currículo profissional por ₹50",
+    "name": "Nome completo",
+    "phone": "Telefone",
+    "address": "Endereço",
+    "objective": "Objetivo profissional",
+    "qualifications": "Educação e qualificações",
+    "experience": "Experiência",
+    "skills": "Habilidades",
+    "continue": "Continuar para verificação OTP →",
+    "verify": "Verifique seu e-mail",
+    "verifyotp": "Verificar OTP e pagar ₹50",
+    "done": "Currículo gerado!",
+    "myresumes": "Meus currículos",
+    "download": "Baixar PDF"
+  },
+  "language": {
+    "select": "Idioma",
+    "otp": {
+      "title": "Verificar e-mail para francês",
+      "subtitle": "Digite o OTP enviado ao seu e-mail para mudar para francês",
+      "button": "Verificar e mudar para francês",
+      "back": "Cancelar"
+    }
+  }
+}

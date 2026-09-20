@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "internships": "实习",
+    "jobs": "工作",
+    "plans": "计划",
+    "resume": "简历",
+    "community": "社区",
+    "login": "登录",
+    "admin": "管理员",
+    "logout": "退出"
+  },
+  "home": {
+    "title": "找到你梦想的实习机会",
+    "subtitle": "探索数千个实习和工作机会"
+  },
+  "login": {
+    "title": "登录",
+    "subtitle": "登录您的账户",
+    "email": "电子邮件",
+    "password": "密码",
+    "signin": "登录",
+    "forgot": "忘记密码？",
+    "noaccount": "没有账户？",
+    "signup": "注册",
+    "google": "使用Google继续"
+  },
+  "signup": {
+    "title": "创建测试账户",
+    "subtitle": "注册以测试忘记密码功能",
+    "name": "姓名",
+    "email": "电子邮件",
+    "phone": "电话（可选）",
+    "password": "密码",
+    "button": "注册"
+  },
+  "forgotpassword": {
+    "title": "忘记密码",
+    "subtitle": "输入您的注册邮箱或手机号，我们将发送新密码",
+    "label": "电子邮件或手机号",
+    "button": "发送新密码",
+    "back": "返回登录"
+  },
+  "profile": {
+    "active": "活跃申请",
+    "accepted": "已接受申请",
+    "viewapps": "查看申请",
+    "loginhistory": "登录历史",
+    "historysubtitle": "最近的登录尝试",
+    "loading": "加载登录历史...",
+    "nohistory": "未找到登录历史。"
+  },
+  "subscription": {
+    "title": "订阅计划",
+    "subtitle": "选择计划以解锁更多实习申请",
+    "current": "当前计划",
+    "warning": "付款仅在IST上午10点至11点之间接受",
+    "getstarted": "开始",
+    "subscribe": "立即订阅",
+    "active": "活跃",
+    "processing": "处理中..."
+  },
+  "publicspace": {
+    "title": "公共空间",
+    "subtitle": "与社区分享照片和视频",
+    "feed": "动态",
+    "friends": "朋友",
+    "addfriend": "添加朋友",
+    "pending": "待处理请求",
+    "myfriends": "我的朋友",
+    "nofriends": "还没有朋友。添加朋友以解锁发帖！",
+    "placeholder": "你在想什么？",
+    "post": "发布",
+    "posting": "发布中...",
+    "share": "分享",
+    "comments": "评论",
+    "writecomment": "写评论..."
+  },
+  "resume": {
+    "title": "简历构建器",
+    "subtitle": "以₹50创建专业简历",
+    "name": "全名",
+    "phone": "电话",
+    "address": "地址",
+    "objective": "职业目标",
+    "qualifications": "教育和资历",
+    "experience": "经验",
+    "skills": "技能",
+    "continue": "继续OTP验证 →",
+    "verify": "验证您的电子邮件",
+    "verifyotp": "验证OTP并支付₹50",
+    "done": "简历已生成！",
+    "myresumes": "我的简历",
+    "download": "下载PDF"
+  },
+  "language": {
+    "select": "语言",
+    "otp": {
+      "title": "验证法语切换邮箱",
+      "subtitle": "输入发送到您邮箱的OTP以切换到法语",
+      "button": "验证并切换到法语",
+      "back": "取消"
+    }
+  }
+}

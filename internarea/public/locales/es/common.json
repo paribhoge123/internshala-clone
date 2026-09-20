@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "internships": "Pasantías",
+    "jobs": "Empleos",
+    "plans": "Planes",
+    "resume": "Currículum",
+    "community": "Comunidad",
+    "login": "Iniciar sesión",
+    "admin": "Administrador",
+    "logout": "Cerrar sesión"
+  },
+  "home": {
+    "title": "Encuentra tu pasantía soñada",
+    "subtitle": "Explora miles de oportunidades de pasantías y empleos"
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "subtitle": "Accede a tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signin": "Entrar",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "noaccount": "¿No tienes cuenta?",
+    "signup": "Regístrate",
+    "google": "Continuar con Google"
+  },
+  "signup": {
+    "title": "Crear cuenta de prueba",
+    "subtitle": "Regístrate para probar la función de contraseña olvidada",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono (opcional)",
+    "password": "Contraseña",
+    "button": "Registrarse"
+  },
+  "forgotpassword": {
+    "title": "Olvidé mi contraseña",
+    "subtitle": "Ingresa tu correo o teléfono registrado y te enviaremos una nueva contraseña",
+    "label": "Correo o número de teléfono",
+    "button": "Enviar nueva contraseña",
+    "back": "Volver al inicio de sesión"
+  },
+  "profile": {
+    "active": "Solicitudes activas",
+    "accepted": "Solicitudes aceptadas",
+    "viewapps": "Ver solicitudes",
+    "loginhistory": "Historial de accesos",
+    "historysubtitle": "Intentos de inicio de sesión recientes",
+    "loading": "Cargando historial...",
+    "nohistory": "No se encontró historial."
+  },
+  "subscription": {
+    "title": "Planes de suscripción",
+    "subtitle": "Elige un plan para desbloquear más solicitudes",
+    "current": "Plan actual",
+    "warning": "Los pagos solo se aceptan entre las 10:00 AM y las 11:00 AM IST",
+    "getstarted": "Comenzar",
+    "subscribe": "Suscribirse",
+    "active": "Activo",
+    "processing": "Procesando..."
+  },
+  "publicspace": {
+    "title": "Espacio público",
+    "subtitle": "Comparte fotos y videos con la comunidad",
+    "feed": "Feed",
+    "friends": "Amigos",
+    "addfriend": "Agregar amigo",
+    "pending": "Solicitudes pendientes",
+    "myfriends": "Mis amigos",
+    "nofriends": "Sin amigos aún. ¡Agrega amigos para desbloquear publicaciones!",
+    "placeholder": "¿Qué estás pensando?",
+    "post": "Publicar",
+    "posting": "Publicando...",
+    "share": "Compartir",
+    "comments": "Comentarios",
+    "writecomment": "Escribe un comentario..."
+  },
+  "resume": {
+    "title": "Creador de currículum",
+    "subtitle": "Crea un currículum profesional por ₹50",
+    "name": "Nombre completo",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "objective": "Objetivo profesional",
+    "qualifications": "Educación y calificaciones",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "continue": "Continuar a verificación OTP →",
+    "verify": "Verifica tu correo",
+    "verifyotp": "Verificar OTP y pagar ₹50",
+    "done": "¡Currículum generado!",
+    "myresumes": "Mis currículums",
+    "download": "Descargar PDF"
+  },
+  "language": {
+    "select": "Idioma",
+    "otp": {
+      "title": "Verificar correo para francés",
+      "subtitle": "Ingresa el OTP enviado a tu correo para cambiar al francés",
+      "button": "Verificar y cambiar a francés",
+      "back": "Cancelar"
+    }
+  }
+}
