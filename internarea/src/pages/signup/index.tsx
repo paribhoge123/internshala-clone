@@ -3,8 +3,10 @@ import { User, Mail, Phone, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const Signup = () => {
+  const { t } = useTranslation("common");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,10 +44,10 @@ const Signup = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
-          Create Test Account
+          {t("signup.title")}
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Sign up to test the forgot password feature
+          {t("signup.subtitle")}
         </p>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -53,7 +55,7 @@ const Signup = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Name
+                {t("signup.name")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -72,7 +74,7 @@ const Signup = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Email
+                {t("signup.email")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -91,7 +93,7 @@ const Signup = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Phone (optional)
+                {t("signup.phone")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -109,7 +111,7 @@ const Signup = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Password
+                {t("signup.password")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -132,7 +134,7 @@ const Signup = () => {
                 disabled={isLoading}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {isLoading ? "Creating account..." : "Sign up"}
+                {isLoading ? "Creating account..." : t("signup.button")}
               </button>
             </div>
           </form>

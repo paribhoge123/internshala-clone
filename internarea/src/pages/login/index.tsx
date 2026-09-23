@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation("common");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,18 +30,14 @@ const Login = () => {
     }
     try {
       setIsLoading(true);
-      // Step 1: verify password
       const loginRes = await axios.post(
         "http://localhost:5000/api/user/login",
-        formData
+        formData,
       );
-
-      // Step 2: check device/browser rules
       const trackRes = await axios.post(
         "http://localhost:5000/api/login-tracking/check",
-        { email: formData.email, loginMethod: "password" }
+        { email: formData.email, loginMethod: "password" },
       );
-
       if (trackRes.data.requiresOtp) {
         setAwaitingOtp(true);
         toast.success("OTP sent to your email");
@@ -120,10 +118,10 @@ const Login = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
-          Login
+          {t("login.title")}
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Sign in to your account
+          {t("login.subtitle")}
         </p>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -131,7 +129,7 @@ const Login = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Email
+                {t("login.email")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -150,7 +148,7 @@ const Login = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Password
+                {t("login.password")}
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -173,7 +171,7 @@ const Login = () => {
                 href="/forgotpassword"
                 className="text-sm text-blue-600 hover:text-blue-500"
               >
-                Forgot your password?
+                {t("login.forgot")}
               </Link>
             </div>
 
@@ -183,14 +181,17 @@ const Login = () => {
                 disabled={isLoading}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {isLoading ? "Signing in..." : "Sign in"}
+                {isLoading ? "Signing in..." : t("login.signin")}
               </button>
             </div>
 
             <div className="text-center text-sm text-gray-600">
-              Don&apos;t have an account?{" "}
-              <Link href="/signup" className="text-blue-600 hover:text-blue-500">
-                Sign up
+              {t("login.noaccount")}{" "}
+              <Link
+                href="/signup"
+                className="text-blue-600 hover:text-blue-500"
+              >
+                {t("login.signup")}
               </Link>
             </div>
           </form>

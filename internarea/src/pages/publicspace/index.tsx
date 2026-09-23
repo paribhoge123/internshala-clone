@@ -14,10 +14,12 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
+import { useTranslation } from "react-i18next";
 
 const API = "http://localhost:5000/api/publicspace";
 
 const PublicSpace = () => {
+  const { t } = useTranslation("common");
   const user = useSelector(selectuser);
   const email = user?.email || "";
   const name = user?.name || "";
@@ -89,11 +91,9 @@ const PublicSpace = () => {
       formData.append("photo", photo);
       if (content) formData.append("content", content);
       if (mediaFile) formData.append("media", mediaFile);
-
       await axios.post(`${API}/posts`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       toast.success("Post created!");
       setContent("");
       setMediaFile(null);
@@ -224,11 +224,9 @@ const PublicSpace = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold text-gray-900">
-            Public Space
+            {t("publicspace.title")}
           </h1>
-          <p className="mt-2 text-gray-600">
-            Share photos and videos with the community
-          </p>
+          <p className="mt-2 text-gray-600">{t("publicspace.subtitle")}</p>
           {postingLimit && (
             <div className="mt-3 inline-block bg-blue-50 text-blue-800 px-4 py-2 rounded-full text-sm">
               Friends: {postingLimit.friendCount} | Posts today:{" "}
@@ -252,7 +250,7 @@ const PublicSpace = () => {
                 : "bg-white text-gray-600 border border-gray-200"
             }`}
           >
-            Feed
+            {t("publicspace.feed")}
           </button>
           <button
             onClick={() => setActiveTab("friends")}
@@ -263,7 +261,7 @@ const PublicSpace = () => {
             }`}
           >
             <Users className="h-4 w-4" />
-            Friends
+            {t("publicspace.friends")}
             {friendData?.pendingRequests?.length > 0 && (
               <span className="bg-red-500 text-white text-xs rounded-full px-1.5">
                 {friendData.pendingRequests.length}
@@ -275,7 +273,6 @@ const PublicSpace = () => {
         {/* FEED TAB */}
         {activeTab === "feed" && (
           <div className="space-y-6">
-            {/* Create Post */}
             {email && (
               <div className="bg-white rounded-2xl shadow-sm p-6">
                 <div className="flex items-start space-x-3">
@@ -297,7 +294,7 @@ const PublicSpace = () => {
                       placeholder={
                         postingLimit?.allowed === false
                           ? postingLimit.reason
-                          : "What's on your mind?"
+                          : t("publicspace.placeholder")
                       }
                       disabled={postingLimit?.allowed === false}
                       rows={3}
@@ -340,7 +337,9 @@ const PublicSpace = () => {
                         disabled={isPosting || postingLimit?.allowed === false}
                         className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50"
                       >
-                        {isPosting ? "Posting..." : "Post"}
+                        {isPosting
+                          ? t("publicspace.posting")
+                          : t("publicspace.post")}
                       </button>
                     </div>
                   </div>
@@ -348,7 +347,6 @@ const PublicSpace = () => {
               </div>
             )}
 
-            {/* Posts Feed */}
             {posts.length === 0 ? (
               <div className="text-center py-12 text-gray-400">
                 No posts yet. Be the first to share something!
@@ -360,7 +358,6 @@ const PublicSpace = () => {
                   id={post._id}
                   className="bg-white rounded-2xl shadow-sm p-6"
                 >
-                  {/* Post Header */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       {post.photo ? (
@@ -393,12 +390,10 @@ const PublicSpace = () => {
                     )}
                   </div>
 
-                  {/* Post Content */}
                   {post.content && (
                     <p className="text-gray-800 mb-4">{post.content}</p>
                   )}
 
-                  {/* Media */}
                   {post.mediaUrl && (
                     <div className="mb-4 rounded-xl overflow-hidden">
                       {post.mediaType === "video" ? (
@@ -417,7 +412,6 @@ const PublicSpace = () => {
                     </div>
                   )}
 
-                  {/* Actions */}
                   <div className="flex items-center space-x-6 text-gray-500 border-t pt-3">
                     <button
                       onClick={() => handleLike(post._id)}
@@ -438,18 +432,20 @@ const PublicSpace = () => {
                       className="flex items-center space-x-1 text-sm hover:text-blue-500 transition-colors"
                     >
                       <MessageCircle className="h-5 w-5" />
-                      <span>{comments[post._id]?.length || 0} Comments</span>
+                      <span>
+                        {comments[post._id]?.length || 0}{" "}
+                        {t("publicspace.comments")}
+                      </span>
                     </button>
                     <button
                       onClick={() => handleShare(post._id)}
                       className="flex items-center space-x-1 text-sm hover:text-green-500 transition-colors"
                     >
                       <Share2 className="h-5 w-5" />
-                      <span>Share</span>
+                      <span>{t("publicspace.share")}</span>
                     </button>
                   </div>
 
-                  {/* Comments Section */}
                   {expandedComments.includes(post._id) && (
                     <div className="mt-4 space-y-3">
                       {comments[post._id]?.map((comment) => (
@@ -478,7 +474,7 @@ const PublicSpace = () => {
                                 [post._id]: e.target.value,
                               }))
                             }
-                            placeholder="Write a comment..."
+                            placeholder={t("publicspace.writecomment")}
                             className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             onKeyDown={(e) => {
                               if (e.key === "Enter") handleComment(post._id);
@@ -503,11 +499,10 @@ const PublicSpace = () => {
         {/* FRIENDS TAB */}
         {activeTab === "friends" && (
           <div className="space-y-6">
-            {/* Add Friend */}
             <div className="bg-white rounded-2xl shadow-sm p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <UserPlus className="h-5 w-5 text-blue-600" />
-                Add Friend
+                {t("publicspace.addfriend")}
               </h2>
               <div className="flex space-x-3">
                 <input
@@ -526,11 +521,11 @@ const PublicSpace = () => {
               </div>
             </div>
 
-            {/* Pending Requests */}
             {friendData?.pendingRequests?.length > 0 && (
               <div className="bg-white rounded-2xl shadow-sm p-6">
                 <h2 className="text-lg font-bold text-gray-900 mb-4">
-                  Pending Requests ({friendData.pendingRequests.length})
+                  {t("publicspace.pending")} (
+                  {friendData.pendingRequests.length})
                 </h2>
                 <div className="space-y-3">
                   {friendData.pendingRequests.map((req: any) => (
@@ -561,14 +556,13 @@ const PublicSpace = () => {
               </div>
             )}
 
-            {/* Friends List */}
             <div className="bg-white rounded-2xl shadow-sm p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
-                My Friends ({friendData?.friendCount || 0})
+                {t("publicspace.myfriends")} ({friendData?.friendCount || 0})
               </h2>
               {friendData?.friends?.length === 0 ? (
                 <p className="text-gray-400 text-sm">
-                  No friends yet. Add friends to unlock posting!
+                  {t("publicspace.nofriends")}
                 </p>
               ) : (
                 <div className="space-y-3">

@@ -100,5 +100,28 @@
       "button": "Verificar e mudar para francês",
       "back": "Cancelar"
     }
+  },
+  "home": {
+  "title": "Torne sua carreira dos sonhos realidade",
+  "trending": "Em alta no InternArea 🔥",
+  "latestinternships": "Últimos estágios no Intern Area",
+  "latestjobs": "Últimos empregos",
+  "categories": "CATEGORIAS POPULARES:",
+  "activelyhiring": "Contratando ativamente",
+  "viewdetails": "Ver detalhes",
+  "internship": "Estágio",
+  "jobs": "Empregos",
+  "slides": {
+    "s1": "Comece sua jornada profissional",
+    "s2": "Aprenda com os melhores",
+    "s3": "Desenvolva suas habilidades",
+    "s4": "Conecte-se com as melhores empresas"
+  },
+  "stats": {
+    "companies": "empresas contratando",
+    "openings": "novas vagas todos os dias",
+    "students": "estudantes ativos",
+    "learners": "aprendizes"
   }
+}
 }

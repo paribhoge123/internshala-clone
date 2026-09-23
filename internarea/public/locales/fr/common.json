@@ -100,5 +100,28 @@
       "button": "Vérifier et passer au français",
       "back": "Annuler"
     }
+  },
+  "home": {
+  "title": "Faites de votre carrière de rêve une réalité",
+  "trending": "Tendances sur InternArea 🔥",
+  "latestinternships": "Derniers stages sur Intern Area",
+  "latestjobs": "Derniers emplois",
+  "categories": "CATÉGORIES POPULAIRES :",
+  "activelyhiring": "Recrutement actif",
+  "viewdetails": "Voir les détails",
+  "internship": "Stage",
+  "jobs": "Emplois",
+  "slides": {
+    "s1": "Commencez votre parcours professionnel",
+    "s2": "Apprenez des meilleurs",
+    "s3": "Développez vos compétences",
+    "s4": "Connectez-vous avec les meilleures entreprises"
+  },
+  "stats": {
+    "companies": "entreprises qui recrutent",
+    "openings": "nouveaux postes chaque jour",
+    "students": "étudiants actifs",
+    "learners": "apprenants"
   }
+}
 }

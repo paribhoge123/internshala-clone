@@ -9,10 +9,7 @@
     "admin": "Administrador",
     "logout": "Cerrar sesión"
   },
-  "home": {
-    "title": "Encuentra tu pasantía soñada",
-    "subtitle": "Explora miles de oportunidades de pasantías y empleos"
-  },
+ 
   "login": {
     "title": "Iniciar sesión",
     "subtitle": "Accede a tu cuenta",
@@ -100,5 +97,28 @@
       "button": "Verificar y cambiar a francés",
       "back": "Cancelar"
     }
+  },
+  "home": {
+  "title": "Haz realidad tu carrera soñada",
+  "trending": "Tendencias en InternArea 🔥",
+  "latestinternships": "Últimas pasantías en Intern Area",
+  "latestjobs": "Últimos empleos",
+  "categories": "CATEGORÍAS POPULARES:",
+  "activelyhiring": "Contratando activamente",
+  "viewdetails": "Ver detalles",
+  "internship": "Pasantía",
+  "jobs": "Empleos",
+  "slides": {
+    "s1": "Comienza tu camino profesional",
+    "s2": "Aprende de los mejores",
+    "s3": "Desarrolla tus habilidades",
+    "s4": "Conéctate con las mejores empresas"
+  },
+  "stats": {
+    "companies": "empresas contratando",
+    "openings": "nuevas vacantes cada día",
+    "students": "estudiantes activos",
+    "learners": "aprendices"
   }
+}
 }

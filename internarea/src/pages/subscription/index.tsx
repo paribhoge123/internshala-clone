@@ -1,9 +1,10 @@
 import axios from "axios";
-import { Check, Zap } from "lucide-react";
+import { Check } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
+import { useTranslation } from "react-i18next";
 
 const plans = [
   {
@@ -67,19 +68,18 @@ declare global {
 }
 
 const Subscription = () => {
+  const { t } = useTranslation("common");
   const user = useSelector(selectuser);
   const [isLoading, setIsLoading] = useState<string | null>(null);
   const [activePlan, setActivePlan] = useState<any>(null);
   const email = user?.email || "";
 
   useEffect(() => {
-    // Load Razorpay script
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     document.body.appendChild(script);
 
-    // Fetch active plan
     if (email) {
       axios
         .get(`http://localhost:5000/api/subscription/my-plan/${email}`)
@@ -97,16 +97,13 @@ const Subscription = () => {
       toast.error("Please log in with Google to subscribe to a plan");
       return;
     }
-
     setIsLoading(planKey);
-
     try {
       const res = await axios.post(
         "http://localhost:5000/api/subscription/create-order",
         { plan: planKey, email },
       );
 
-      // Free plan — no payment needed
       if (res.data.free) {
         toast.success(res.data.message);
         setActivePlan({ plan: planKey, price: 0, status: "active" });
@@ -114,7 +111,6 @@ const Subscription = () => {
         return;
       }
 
-      // Paid plan — open Razorpay checkout
       const options = {
         key: res.data.keyId,
         amount: res.data.amount,
@@ -142,12 +138,8 @@ const Subscription = () => {
             );
           }
         },
-        prefill: {
-          email,
-        },
-        theme: {
-          color: "#2563eb",
-        },
+        prefill: { email },
+        theme: { color: "#2563eb" },
       };
 
       const rzp = new window.Razorpay(options);
@@ -164,18 +156,19 @@ const Subscription = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-gray-900">
-            Subscription Plans
+            {t("subscription.title")}
           </h1>
           <p className="mt-4 text-lg text-gray-600">
-            Choose a plan to unlock more internship applications
+            {t("subscription.subtitle")}
           </p>
           {activePlan && (
             <div className="mt-4 inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
-              Current Plan: {activePlan.plan?.toUpperCase()} — Active
+              {t("subscription.current")}: {activePlan.plan?.toUpperCase()} —{" "}
+              {t("subscription.active")}
             </div>
           )}
           <p className="mt-2 text-sm text-red-500">
-            ⚠️ Payments are only accepted between 10:00 AM – 11:00 AM IST
+            ⚠️ {t("subscription.warning")}
           </p>
         </div>
 
@@ -194,7 +187,7 @@ const Subscription = () => {
                   </h2>
                   {activePlan?.plan === plan.key && (
                     <span className="text-xs bg-green-500 text-white px-2 py-1 rounded-full">
-                      Active
+                      {t("subscription.active")}
                     </span>
                   )}
                 </div>
@@ -229,12 +222,12 @@ const Subscription = () => {
                 className={`w-full py-2 px-4 rounded-lg text-white font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${plan.buttonColor}`}
               >
                 {isLoading === plan.key
-                  ? "Processing..."
+                  ? t("subscription.processing")
                   : activePlan?.plan === plan.key
-                    ? "Current Plan"
+                    ? t("subscription.current")
                     : plan.price === 0
-                      ? "Get Started"
-                      : "Subscribe Now"}
+                      ? t("subscription.getstarted")
+                      : t("subscription.subscribe")}
               </button>
             </div>
           ))}

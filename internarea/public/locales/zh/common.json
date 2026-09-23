@@ -100,5 +100,28 @@
       "button": "验证并切换到法语",
       "back": "取消"
     }
+  },
+  "home": {
+  "title": "让您的梦想职业成为现实",
+  "trending": "InternArea热门 🔥",
+  "latestinternships": "Intern Area最新实习",
+  "latestjobs": "最新工作",
+  "categories": "热门类别：",
+  "activelyhiring": "积极招聘",
+  "viewdetails": "查看详情",
+  "internship": "实习",
+  "jobs": "工作",
+  "slides": {
+    "s1": "开启您的职业旅程",
+    "s2": "向最好的人学习",
+    "s3": "提升您的技能",
+    "s4": "与顶级公司建立联系"
+  },
+  "stats": {
+    "companies": "家公司正在招聘",
+    "openings": "每天新职位",
+    "students": "活跃学生",
+    "learners": "学习者"
   }
+}
 }

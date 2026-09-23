@@ -1,9 +1,17 @@
 import { selectuser } from "@/Feature/Userslice";
-import { ExternalLink, Mail, User, Monitor, Smartphone, Clock } from "lucide-react";
+import {
+  ExternalLink,
+  Mail,
+  User,
+  Monitor,
+  Smartphone,
+  Clock,
+} from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 interface UserType {
   name: string;
@@ -23,6 +31,7 @@ interface LoginRecord {
 }
 
 const index = () => {
+  const { t } = useTranslation("common");
   const user = useSelector(selectuser);
   const [loginHistory, setLoginHistory] = useState<LoginRecord[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
@@ -33,7 +42,7 @@ const index = () => {
       try {
         setLoadingHistory(true);
         const res = await axios.get(
-          `http://localhost:5000/api/login-tracking/history/${user.email}`
+          `http://localhost:5000/api/login-tracking/history/${user.email}`,
         );
         setLoginHistory(res.data);
       } catch (error) {
@@ -52,7 +61,10 @@ const index = () => {
       case "blocked_otp_pending":
         return { text: "OTP Pending", color: "bg-yellow-100 text-yellow-800" };
       case "blocked_time_window":
-        return { text: "Blocked (Time Window)", color: "bg-red-100 text-red-800" };
+        return {
+          text: "Blocked (Time Window)",
+          color: "bg-red-100 text-red-800",
+        };
       default:
         return { text: status, color: "bg-gray-100 text-gray-800" };
     }
@@ -89,7 +101,6 @@ const index = () => {
               </div>
             </div>
 
-            {/* Profile Details */}
             <div className="space-y-6">
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4">
@@ -98,7 +109,7 @@ const index = () => {
                     0
                   </span>
                   <p className="text-blue-600 text-sm mt-1">
-                    Active Applications
+                    {t("profile.active")}
                   </p>
                 </div>
                 <div className="bg-green-50 rounded-lg p-4 text-center">
@@ -106,7 +117,7 @@ const index = () => {
                     0
                   </span>
                   <p className="text-green-600 text-sm mt-1">
-                    Accepted Applications
+                    {t("profile.accepted")}
                   </p>
                 </div>
               </div>
@@ -117,7 +128,7 @@ const index = () => {
                   href="/userapplication"
                   className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
                 >
-                  View Applications
+                  {t("profile.viewapps")}
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -130,18 +141,18 @@ const index = () => {
           <div className="border-b border-gray-200 px-6 py-4">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Clock className="h-5 w-5 mr-2 text-gray-500" />
-              Login History
+              {t("profile.loginhistory")}
             </h2>
             <p className="mt-1 text-sm text-gray-500">
-              Recent login attempts on your account
+              {t("profile.historysubtitle")}
             </p>
           </div>
 
           <div className="p-6">
             {loadingHistory ? (
-              <p className="text-gray-500 text-sm">Loading login history...</p>
+              <p className="text-gray-500 text-sm">{t("profile.loading")}</p>
             ) : loginHistory.length === 0 ? (
-              <p className="text-gray-500 text-sm">No login history found.</p>
+              <p className="text-gray-500 text-sm">{t("profile.nohistory")}</p>
             ) : (
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
