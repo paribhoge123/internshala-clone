@@ -82,7 +82,9 @@ const Subscription = () => {
 
     if (email) {
       axios
-        .get(`http://localhost:5000/api/subscription/my-plan/${email}`)
+        .get(
+          `https://internshala-clone-production-b240.up.railway.app//api/subscription/my-plan/${email}`,
+        )
         .then((res) => setActivePlan(res.data))
         .catch(console.error);
     }
@@ -100,7 +102,7 @@ const Subscription = () => {
     setIsLoading(planKey);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/subscription/create-order",
+        "https://internshala-clone-production-b240.up.railway.app//api/subscription/create-order",
         { plan: planKey, email },
       );
 
@@ -121,7 +123,7 @@ const Subscription = () => {
         handler: async (response: any) => {
           try {
             const verifyRes = await axios.post(
-              "http://localhost:5000/api/subscription/verify-payment",
+              "https://internshala-clone-production-b240.up.railway.app//api/subscription/verify-payment",
               {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,

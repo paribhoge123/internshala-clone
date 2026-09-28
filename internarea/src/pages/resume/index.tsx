@@ -50,7 +50,9 @@ const ResumePage = () => {
 
     if (email) {
       axios
-        .get(`http://localhost:5000/api/resume/my-resumes/${email}`)
+        .get(
+          `https://internshala-clone-production-b240.up.railway.app//api/resume/my-resumes/${email}`,
+        )
         .then((res) => setMyResumes(res.data))
         .catch(console.error);
     }
@@ -77,7 +79,10 @@ const ResumePage = () => {
     }
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:5000/api/resume/send-otp", { email });
+      await axios.post(
+        "https://internshala-clone-production-b240.up.railway.app//api/resume/send-otp",
+        { email },
+      );
       toast.success("OTP sent to your email");
       setStep("otp");
     } catch (error: any) {
@@ -95,10 +100,13 @@ const ResumePage = () => {
     }
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:5000/api/resume/verify-otp", {
-        email,
-        otp,
-      });
+      await axios.post(
+        "https://internshala-clone-production-b240.up.railway.app//api/resume/verify-otp",
+        {
+          email,
+          otp,
+        },
+      );
       toast.success("OTP verified! Proceeding to payment...");
       setStep("payment");
       await handlePayment();
@@ -112,7 +120,7 @@ const ResumePage = () => {
   const handlePayment = async () => {
     try {
       const orderRes = await axios.post(
-        "http://localhost:5000/api/resume/create-order",
+        "https://internshala-clone-production-b240.up.railway.app//api/resume/create-order",
         { email },
       );
       const options = {
@@ -124,17 +132,20 @@ const ResumePage = () => {
         order_id: orderRes.data.orderId,
         handler: async (response: any) => {
           try {
-            await axios.post("http://localhost:5000/api/resume/generate", {
-              ...formData,
-              email,
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-            });
+            await axios.post(
+              "https://internshala-clone-production-b240.up.railway.app//api/resume/generate",
+              {
+                ...formData,
+                email,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              },
+            );
             toast.success("Resume generated successfully!");
             setStep("done");
             const resumesRes = await axios.get(
-              `http://localhost:5000/api/resume/my-resumes/${email}`,
+              `https://internshala-clone-production-b240.up.railway.app//api/resume/my-resumes/${email}`,
             );
             setMyResumes(resumesRes.data);
           } catch (error: any) {
@@ -447,7 +458,7 @@ const ResumePage = () => {
                     </p>
                   </div>
                   <a
-                    href={`http://localhost:5000/api/resume/download/${resume.filePath}`}
+                    href={`https://internshala-clone-production-b240.up.railway.app//api/resume/download/${resume.filePath}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"

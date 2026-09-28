@@ -25,10 +25,13 @@ const Navbar = () => {
       const result = await signInWithPopup(auth, provider);
       const loggedInEmail = result.user.email;
       try {
-        await axios.post("http://localhost:5000/api/login-tracking/check", {
-          email: loggedInEmail,
-          loginMethod: "google",
-        });
+        await axios.post(
+          "https://internshala-clone-production-b240.up.railway.app//api/login-tracking/check",
+          {
+            email: loggedInEmail,
+            loginMethod: "google",
+          },
+        );
       } catch (trackError) {
         console.error("Login tracking failed:", trackError);
       }
@@ -164,4 +167,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

@@ -42,7 +42,7 @@ const index = () => {
       try {
         setLoadingHistory(true);
         const res = await axios.get(
-          `http://localhost:5000/api/login-tracking/history/${user.email}`,
+          `https://internshala-clone-production-b240.up.railway.app//api/login-tracking/history/${user.email}`,
         );
         setLoginHistory(res.data);
       } catch (error) {

@@ -29,7 +29,10 @@ const Signup = () => {
     }
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:5000/api/user/signup", formData);
+      await axios.post(
+        "https://internshala-clone-production-b240.up.railway.app//api/user/signup",
+        formData,
+      );
       toast.success("Account created successfully!");
       router.push("/forgotpassword");
     } catch (error: any) {

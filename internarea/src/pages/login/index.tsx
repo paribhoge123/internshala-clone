@@ -31,11 +31,11 @@ const Login = () => {
     try {
       setIsLoading(true);
       const loginRes = await axios.post(
-        "http://localhost:5000/api/user/login",
+        "https://internshala-clone-production-b240.up.railway.app//api/user/login",
         formData,
       );
       const trackRes = await axios.post(
-        "http://localhost:5000/api/login-tracking/check",
+        "https://internshala-clone-production-b240.up.railway.app//api/login-tracking/check",
         { email: formData.email, loginMethod: "password" },
       );
       if (trackRes.data.requiresOtp) {
@@ -61,10 +61,13 @@ const Login = () => {
     }
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:5000/api/login-tracking/verify-otp", {
-        email: formData.email,
-        otp,
-      });
+      await axios.post(
+        "https://internshala-clone-production-b240.up.railway.app//api/login-tracking/verify-otp",
+        {
+          email: formData.email,
+          otp,
+        },
+      );
       toast.success("Logged in successfully!");
       router.push("/profile");
     } catch (error: any) {

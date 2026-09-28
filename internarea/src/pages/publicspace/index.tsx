@@ -16,7 +16,8 @@ import { useSelector } from "react-redux";
 import { selectuser } from "@/Feature/Userslice";
 import { useTranslation } from "react-i18next";
 
-const API = "http://localhost:5000/api/publicspace";
+const API =
+  "https://internshala-clone-production-b240.up.railway.app//api/publicspace";
 
 const PublicSpace = () => {
   const { t } = useTranslation("common");

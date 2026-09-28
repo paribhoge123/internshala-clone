@@ -36,9 +36,12 @@ const LanguageSwitcher = () => {
       // Send OTP
       try {
         setIsLoading(true);
-        await axios.post("http://localhost:5000/api/resume/send-otp", {
-          email: user.email,
-        });
+        await axios.post(
+          "https://internshala-clone-production-b240.up.railway.app//api/resume/send-otp",
+          {
+            email: user.email,
+          },
+        );
         toast.success("OTP sent to your email for French verification");
         setOtpSent(true);
         setShowOtpModal(true);
@@ -64,10 +67,13 @@ const LanguageSwitcher = () => {
     }
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:5000/api/resume/verify-otp", {
-        email: user?.email,
-        otp,
-      });
+      await axios.post(
+        "https://internshala-clone-production-b240.up.railway.app//api/resume/verify-otp",
+        {
+          email: user?.email,
+          otp,
+        },
+      );
       // OTP verified — switch to French
       i18n.changeLanguage("fr");
       localStorage.setItem("preferredLanguage", "fr");
